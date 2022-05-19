@@ -8,7 +8,7 @@ module.exports = (options, ctx) => {
         allowAll = false,           // Allow All: false by default
         disallowAll = false,        // Disallow all: false by default
         host,                       // Base URL
-        sitemap = '//sitemap.xml',    // Default sitemap is sitemap.xml
+        sitemap = '/sitemap.xml',    // Default sitemap is sitemap.xml
         policies,            // Default policies is null
         outputFile = 'robots.txt'   // Default robots is robots.txt
     } = options;
@@ -54,7 +54,9 @@ module.exports = (options, ctx) => {
                 }
 
                 robotstxt({
-                    policy: policyArray, sitemap: host + sitemap.replace(/\/\//g,"/"), host: host
+                    policy: policyArray,
+                    sitemap: sitemap === '' ? '' : host + sitemap,
+                    host: host
                 }).then(content => {
                     // All good, save the file
                     fs.writeFileSync(robotsTxt, content)

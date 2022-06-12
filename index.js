@@ -31,7 +31,7 @@ module.exports = (options, ctx) => {
                 }
                 const allowAllPolicy = {
                     userAgent: "*",
-                    disallow: ""
+                    allow: "/"
                 }
 
                 if(disallowAll){
